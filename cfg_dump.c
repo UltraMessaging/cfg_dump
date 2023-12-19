@@ -97,7 +97,7 @@ void print_src(lbm_src_t *src, char *header)
 void print_ssrc(lbm_ssrc_t *ssrc, char *header)
 {
   int err;
-  int num_opts = lbm_src_topic_attr_option_size() * 2;  /* Workaround of lack of lbm_ssrc_topic_attr_option_size(). */
+  int num_opts = lbm_src_topic_attr_option_size();  /* Smart src uses the regular "src" API. */
   lbm_config_option_t *opts = (lbm_config_option_t *)malloc(sizeof(lbm_config_option_t) * num_opts);
 
   err = lbm_ssrc_topic_dump(ssrc, &num_opts, opts);  E(err);
