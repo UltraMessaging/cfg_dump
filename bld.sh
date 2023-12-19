@@ -27,7 +27,7 @@ rm -rf *.class cfg_dump
 gcc -Wall -g -I $LBM/include -I $LBM/include/lbm -o cfg_dump cfg_dump.c $LIBS
 if [ $? -ne 0 ]; then echo error in cfg_dump.c; exit 1; fi
 
-# Java: TBD
-# javac $CP cfg_dump.java
-# if [ $? -ne 0 ]; then echo error in lbmpong.java; exit 1; fi
+
+javac $CP CfgDump.java
+if [ $? -ne 0 ]; then echo error in lbmpong.java; exit 1; fi
 

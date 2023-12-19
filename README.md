@@ -44,17 +44,22 @@ See https://github.com/UltraMessaging/cfg_dump for code and documentation.
 
 # Introduction
 
-Example program to demonstrate dumping the configuration of a UM context,
+Example C and Java programs to demonstrate dumping the configuration of a UM context,
 receiver, smart source, and regular source objects.
 The dumps are simple ascii text and are written to standard output.
 
-* cfg_dump.c - demo program that performs the configuration dumping.
-* bld.sh - shell script to build the demo program.
-* tst.sh - shell script to run the demo program.
+* cfg_dump.c - demo C program that performs the configuration dumping.
+* CfgDump.java - demo Java program that performs the configuration dumping.
+* bld.sh - shell script to build the demo programs.
+* tst.sh - shell script to run the demo programs.
 
 Both scripts expect a file "lbm.sh" that sets up your UM environment. See "lbm.sh.example" as a model.
 
-# Coding Notes
+There are a few other object types that are not demonstrated,
+like event queues and hot failover receivers.
+Those should be straightforward to code given these examples.
+
+# C Coding Notes
 
 The configuration dumping APIs take a UM object that has been created and
 prints the configured attributes.

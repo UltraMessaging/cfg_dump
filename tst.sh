@@ -10,3 +10,4 @@ fi
 
 ./cfg_dump
 
+java $CP CfgDump
