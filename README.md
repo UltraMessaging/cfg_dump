@@ -7,13 +7,15 @@ Example code dumping UM objects' configuration
 <!-- mdtoc-start -->
 &bull; [cfg_dump](#cfg_dump)  
 &bull; [Table of contents](#table-of-contents)  
-&bull; [COPYRIGHT AND LICENSE](#copyright-and-license)  
-&bull; [REPOSITORY](#repository)  
-&bull; [INTRODUCTION](#introduction)  
+&bull; [Copyright And License](#copyright-and-license)  
+&bull; [Repository](#repository)  
+&bull; [Introduction](#introduction)  
+&bull; [Coding Notes](#coding-notes)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Error Handling](#error-handling)  
 <!-- TOC created by '/home/sford/bin/mdtoc.pl README.md' (see https://github.com/fordsfords/mdtoc) -->
 <!-- mdtoc-end -->
 
-# COPYRIGHT AND LICENSE
+# Copyright And License
 
 All of the documentation and software included in this and any
 other Informatica Ultra Messaging GitHub repository
@@ -36,15 +38,41 @@ INDIRECT DAMAGES ARISING OUT OF OR RELATED TO THIS AGREEMENT OR THE
 TRANSACTIONS CONTEMPLATED HEREUNDER, EVEN IF INFORMATICA HAS BEEN APPRISED OF
 THE LIKELIHOOD OF SUCH DAMAGES.
 
-# REPOSITORY
+# Repository
 
 See https://github.com/UltraMessaging/cfg_dump for code and documentation.
 
-# INTRODUCTION
+# Introduction
 
-Example code to dump the configuration of a UM context, receiver, smart source, and regular source objects.
+Example program to demonstrate dumping the configuration of a UM context,
+receiver, smart source, and regular source objects.
+The dumps are simple ascii text and are written to standard output.
 
-* bld.sh - build the test program.
-* tst.sh - run the test program.
+* cfg_dump.c - demo program that performs the configuration dumping.
+* bld.sh - shell script to build the demo program.
+* tst.sh - shell script to run the demo program.
 
 Both scripts expect a file "lbm.sh" that sets up your UM environment. See "lbm.sh.example" as a model.
+
+# Coding Notes
+
+The configuration dumping APIs take a UM object that has been created and
+prints the configured attributes.
+For example:
+````
+print_context(my_ctx, "Context");
+````
+A real program would modify the "print_context()" etc functions to
+send the configuration information to the log file
+using the established logging infrastructure.
+
+## Error Handling
+
+To make the code easier to follow, a very simple error handling convention is used.
+The code macro "E()" is invoked after each UM API call with the API's return code.
+The macro prints error details to stndard error and exits with status of 1.
+
+For example:
+````
+err = lbm_context_create(&my_ctx, NULL, NULL, NULL);  E(err);
+````
