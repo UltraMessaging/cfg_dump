@@ -10,8 +10,8 @@ Example code dumping UM objects' configuration
 &bull; [Copyright And License](#copyright-and-license)  
 &bull; [Repository](#repository)  
 &bull; [Introduction](#introduction)  
-&bull; [C Coding Notes](#c-coding-notes)  
-&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Error Handling](#error-handling)  
+&bull; [Coding Notes](#coding-notes)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [C Error Handling](#c-error-handling)  
 <!-- TOC created by '/home/sford/bin/mdtoc.pl README.md' (see https://github.com/fordsfords/mdtoc) -->
 <!-- mdtoc-end -->
 
@@ -44,7 +44,17 @@ See https://github.com/UltraMessaging/cfg_dump for code and documentation.
 
 # Introduction
 
-Example C and Java programs to demonstrate dumping the configuration of a UM context,
+UM provides multiple methods of configuring UM objects.
+It is not unusual for applications to use a combination of
+code-based APIs, flat files, and XML files.
+It can be tedious and error-prone to determine via static analysis
+exactly how UM objects will be configured.
+Some UM users have opted to write their applications to
+log their UM objects' configurations after the objects are
+created, thus leaving no room for error.
+
+This repository contains example C and Java programs to demonstrate dumping
+(printing) the configurations of a UM context,
 receiver, smart source, and regular source objects.
 The dumps are simple ascii text and are written to standard output.
 
@@ -59,19 +69,24 @@ There are a few other object types that are not demonstrated,
 like event queues and hot failover receivers.
 Those should be straightforward to code given these examples.
 
-# C Coding Notes
+# Coding Notes
 
 The configuration dumping APIs take a UM object that has been created and
 prints the configured attributes.
-For example:
+
+C example:
 ````
 print_context(my_ctx, "Context");
 ````
-A real program would modify the "print_context()" etc functions to
+Java example:
+````
+printContext(myCtx, "Context");
+````
+A real program would modify these functions functions to
 send the configuration information to the log file
 using the established logging infrastructure.
 
-## Error Handling
+## C Error Handling
 
 To make the code easier to follow, a very simple error handling convention is used.
 The code macro "E()" is invoked for each UM API.
