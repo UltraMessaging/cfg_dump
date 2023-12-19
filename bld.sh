@@ -24,7 +24,6 @@ LIBS="-L $LBM/lib -l lbm -l pthread -l m -l rt"
 
 rm -rf *.class cfg_dump
 
-echo "gcc -Wall -g -I $LBM/include -I $LBM/include/lbm -o cfg_dump cfg_dump.c $LIBS"
 gcc -Wall -g -I $LBM/include -I $LBM/include/lbm -o cfg_dump cfg_dump.c $LIBS
 if [ $? -ne 0 ]; then echo error in cfg_dump.c; exit 1; fi
 

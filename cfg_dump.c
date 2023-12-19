@@ -32,9 +32,7 @@
 #define E(lbm_funct_call_) do { \
   int e_ = (lbm_funct_call_); \
   if (e_ == LBM_FAILURE) { \
-    fprintf(stderr, "ERROR (%s:%d): %s failed: '%s'\n", \
-       __FILE__, __LINE__, #lbm_funct_call_, lbm_errmsg()); \
-    fflush(stderr); \
+    fprintf(stderr, "ERROR (%s:%d): %s failed: '%s'\n", __FILE__, __LINE__, #lbm_funct_call_, lbm_errmsg()); \
     exit(1); \
   } \
 } while (0)  /* E */
@@ -60,11 +58,10 @@ void print_opts(lbm_config_option_t *rcv_opts, int num_opts, char *header)
 
 void print_context(lbm_context_t *ctx, char *header)
 {
-  int err;
   int num_opts = lbm_context_attr_option_size();
   lbm_config_option_t *opts = (lbm_config_option_t *)malloc(sizeof(lbm_config_option_t) * num_opts);
 
-  err = lbm_context_dump(ctx, &num_opts, opts);  E(err);
+  E(lbm_context_dump(ctx, &num_opts, opts));
   print_opts(opts, num_opts, header);
   free(opts);
 }  /* print_context */
@@ -72,11 +69,10 @@ void print_context(lbm_context_t *ctx, char *header)
 
 void print_rcv(lbm_rcv_t *rcv, char *header)
 {
-  int err;
   int num_opts = lbm_rcv_topic_attr_option_size();
   lbm_config_option_t *opts = (lbm_config_option_t *)malloc(sizeof(lbm_config_option_t) * num_opts);
 
-  err = lbm_rcv_topic_dump(rcv, &num_opts, opts);  E(err);
+  E(lbm_rcv_topic_dump(rcv, &num_opts, opts));
   print_opts(opts, num_opts, header);
   free(opts);
 }  /* print_rcv */
@@ -84,11 +80,10 @@ void print_rcv(lbm_rcv_t *rcv, char *header)
 
 void print_src(lbm_src_t *src, char *header)
 {
-  int err;
   int num_opts = lbm_src_topic_attr_option_size();
   lbm_config_option_t *opts = (lbm_config_option_t *)malloc(sizeof(lbm_config_option_t) * num_opts);
 
-  err = lbm_src_topic_dump(src, &num_opts, opts);  E(err);
+  E(lbm_src_topic_dump(src, &num_opts, opts));
   print_opts(opts, num_opts, header);
   free(opts);
 }  /* print_src */
@@ -96,11 +91,10 @@ void print_src(lbm_src_t *src, char *header)
 
 void print_ssrc(lbm_ssrc_t *ssrc, char *header)
 {
-  int err;
   int num_opts = lbm_src_topic_attr_option_size();  /* Smart src uses the regular "src" API. */
   lbm_config_option_t *opts = (lbm_config_option_t *)malloc(sizeof(lbm_config_option_t) * num_opts);
 
-  err = lbm_ssrc_topic_dump(ssrc, &num_opts, opts);  E(err);
+  E(lbm_ssrc_topic_dump(ssrc, &num_opts, opts));
   print_opts(opts, num_opts, header);
   free(opts);
 }  /* print_ssrc */
@@ -108,27 +102,26 @@ void print_ssrc(lbm_ssrc_t *ssrc, char *header)
 
 int main(int argc, char **argv)
 {
-  int err;
   lbm_context_t *my_ctx;
   lbm_topic_t *topic_obj;
   lbm_rcv_t *my_rcv;
   lbm_src_t *my_src;
   lbm_ssrc_t *my_ssrc;
 
-  err = lbm_config("cfg_dump.cfg");  E(err);
+  E(lbm_config("cfg_dump.cfg"));
 
-  err = lbm_context_create(&my_ctx, NULL, NULL, NULL);  E(err);
+  E(lbm_context_create(&my_ctx, NULL, NULL, NULL));
   print_context(my_ctx, "Context");
 
-  err = lbm_rcv_topic_lookup(&topic_obj, my_ctx, "MyTopic", NULL);  E(err);
-  err = lbm_rcv_create(&my_rcv, my_ctx, topic_obj, my_rcv_cb, NULL, NULL);  E(err);
+  E(lbm_rcv_topic_lookup(&topic_obj, my_ctx, "MyTopic", NULL));
+  E(lbm_rcv_create(&my_rcv, my_ctx, topic_obj, my_rcv_cb, NULL, NULL));
   print_rcv(my_rcv, "Receiver MyTopic");
 
-  err = lbm_src_topic_alloc(&topic_obj, my_ctx, "MyTopic", NULL);  E(err);
-  err = lbm_src_create(&my_src, my_ctx, topic_obj, NULL, NULL, NULL);  E(err);
+  E(lbm_src_topic_alloc(&topic_obj, my_ctx, "MyTopic", NULL));
+  E(lbm_src_create(&my_src, my_ctx, topic_obj, NULL, NULL, NULL));
   print_src(my_src, "Source MyTopic");
 
-  err = lbm_src_topic_alloc(&topic_obj, my_ctx, "MySmartTopic", NULL);  E(err);
-  err = lbm_ssrc_create(&my_ssrc, my_ctx, topic_obj, NULL,  NULL, NULL);  E(err);
+  E(lbm_src_topic_alloc(&topic_obj, my_ctx, "MySmartTopic", NULL));
+  E(lbm_ssrc_create(&my_ssrc, my_ctx, topic_obj, NULL,  NULL, NULL));
   print_ssrc(my_ssrc, "SmartSource MySmartTopic");
 }  /* main */

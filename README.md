@@ -69,10 +69,17 @@ using the established logging infrastructure.
 ## Error Handling
 
 To make the code easier to follow, a very simple error handling convention is used.
-The code macro "E()" is invoked after each UM API call with the API's return code.
-The macro prints error details to stndard error and exits with status of 1.
+The code macro "E()" is invoked for each UM API.
+The macro checks the return code for error, prints the details to stndard error and exits with status of 1.
 
 For example:
 ````
-err = lbm_context_create(&my_ctx, NULL, NULL, NULL);  E(err);
+E(lbm_config("cfg_dump.cfg"));
+````
+Demonstrate an error:
+````
+$ mv cfg_dump.cfg cfg_dump.sav
+$ ./cfg_dump
+ERROR (cfg_dump.c:111): lbm_config("cfg_dump.cfg") failed: 'CoreApi-5688-62: could not open config file'
+$ mv cfg_dump.sav cfg_dump.cfg
 ````
