@@ -78,8 +78,9 @@ E(lbm_config("cfg_dump.cfg"));
 ````
 Demonstrate an error:
 ````
+$ ./bld.sh
 $ mv cfg_dump.cfg cfg_dump.sav
-$ ./cfg_dump
+$ ./tst.sh
 ERROR (cfg_dump.c:111): lbm_config("cfg_dump.cfg") failed: 'CoreApi-5688-62: could not open config file'
 $ mv cfg_dump.sav cfg_dump.cfg
 ````
