@@ -10,7 +10,7 @@ Example code dumping UM objects' configuration
 &bull; [Copyright And License](#copyright-and-license)  
 &bull; [Repository](#repository)  
 &bull; [Introduction](#introduction)  
-&bull; [Coding Notes](#coding-notes)  
+&bull; [C Coding Notes](#c-coding-notes)  
 &nbsp;&nbsp;&nbsp;&nbsp;&bull; [Error Handling](#error-handling)  
 <!-- TOC created by '/home/sford/bin/mdtoc.pl README.md' (see https://github.com/fordsfords/mdtoc) -->
 <!-- mdtoc-end -->
