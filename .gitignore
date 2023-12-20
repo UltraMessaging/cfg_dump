@@ -4,6 +4,7 @@ x.*
 *.x
 *.bak
 *.tmp
+*.log
 tmp.*
 *.tmp[0-9]
 ~*

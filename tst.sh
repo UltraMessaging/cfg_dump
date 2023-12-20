@@ -8,6 +8,10 @@ fi
 
 . ./lbm.sh
 
+echo "cfg_dump"
 ./cfg_dump
+echo ""
 
+echo "CfgDump"
 java $CP CfgDump
+echo ""

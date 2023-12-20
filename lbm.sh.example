@@ -3,12 +3,17 @@
 
 export LBM_LICENSE_INFO="Product=LBM,UME,UMQ,UMDRO:Organization=xxxx:Expiration-Date=never:License-Key=xxxx xxxx xxxx xxxx"
 
-L=$HOME/UMP_6.14/
-LBM=$L/Linux-glibc-2.17-x86_64
-LBMJ=$L/java
+export L=$HOME/UMP_6.14
+export LBM=$L/Linux-glibc-2.17-x86_64
+export LBMJ=$L/java
+
+# Set classpath if possible
+if [ -f "$UMS_JAR" ]; then :
+  export CP="-classpath .:$UMS_JAR"
+else :
+  echo "$UMS_JAR not found."
+fi
 
 export LD_LIBRARY_PATH=$LBM/lib
 
 export PATH="$LBM/bin:$L/SRS/bin:$L/MCS/bin:$PATH"
-
-export CP="-classpath .:/home/sford/UMP_6.14/java/UMS_6.14.jar"
