@@ -1,4 +1,5 @@
-/* cfg_dump.c - Example code dumping UM objects' configuration. */
+/* cfg_dump.c - Example code dumping UM objects' configuration.
+ * See https://github.com/UltraMessaging/cfg_dump */
 /*
   Copyright (c) 2022-2023 Informatica Corporation
   Permission is granted to licensees to use or alter this software for any

@@ -1,4 +1,5 @@
-/* CfgDump.java - performance measurement tool. */
+/* CfgDump.java - performance measurement tool.
+ * See https://github.com/UltraMessaging/cfg_dump */
 /*
   Copyright (c) 2022-2023 Informatica Corporation
   Permission is granted to licensees to use or alter this software for any
